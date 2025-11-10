@@ -1,0 +1,20 @@
+name: Nightly Cleanup
+
+on:
+  schedule:
+    - cron: '0 2 * * *'      # Every day at 2:00 AM UTC
+  workflow_dispatch:         # Allows manual trigger
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t cleanup-job ./cleanup
+
+      - name: Run Docker cleanup job
+        run: docker run --rm cleanup-job
