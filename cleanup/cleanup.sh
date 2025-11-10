@@ -1,10 +1,13 @@
 #!/bin/bash
-
 echo "Running nightly cleanup at $(date)."
 
-# Example cleanup command: delete files older than 7 days in /tmp/data
-# (Replace /tmp/data with the actual directory you want to clean up!)
+echo "Before cleanup:"
+ls -l /tmp/data
 
-find /tmp/data -type f -mtime +7 -exec rm -f {} \;
+# Your cleanup command:
+find /tmp/data -type f -mtime +7 -exec rm {} \;
+
+echo "After cleanup:"
+ls -l /tmp/data
 
 echo "Cleanup complete!"
