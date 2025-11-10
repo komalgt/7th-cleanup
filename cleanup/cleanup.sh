@@ -5,7 +5,7 @@ echo "Before cleanup:"
 ls -l /tmp/data
 
 # Your cleanup command:
-find /tmp/data -type f -mtime +7 -exec rm {} \;
+find /tmp/data -type f -exec rm {} \;
 
 echo "After cleanup:"
 ls -l /tmp/data
