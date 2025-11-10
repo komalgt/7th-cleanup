@@ -4,9 +4,14 @@ FROM ubuntu:22.04
 # Install bash and any other tools you need
 RUN apt-get update && apt-get install -y bash
 
+# Copy your cleanup script into the container
 COPY cleanup.sh /cleanup.sh
 
 # Make sure your script is executable
 RUN chmod +x /cleanup.sh
 
+# Prepare the test directory and test file for cleanup
+RUN mkdir -p /tmp/data && echo "testfile" > /tmp/data/oldfile.txt
+
+# Set the entrypoint to run your cleanup script
 CMD ["/cleanup.sh"]
